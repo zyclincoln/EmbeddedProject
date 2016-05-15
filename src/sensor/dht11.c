@@ -1,19 +1,6 @@
 #include <wiringPi.h>
 #include <stdio.h>
 
-int readDHT11(const int pinNo, int* temperature, int* humidity);
-
-int main(){
-        int temperature,humidity;
-        wiringPiSetup();
-        if(readDHT11(0, &temperature, &humidity)){
-                printf("temperature = %d`C\nhumidity = %d%%\n",temperature,humidity);
-        }
-        else{
-                printf("error\n");
-        }
-}
-
 int readDHT11(const int pinNo, int* temperature, int* humidity){
         int data[5];
         int circle=0, flag=0,num=0,bit=0;
@@ -45,7 +32,7 @@ int readDHT11(const int pinNo, int* temperature, int* humidity){
                                 flag=0;
                         }
                         else if(flag<3){
-								data[num]=data[num]<<1;
+                                data[num]=data[num]<<1;
                                 bit++;
                         }
                         else{
